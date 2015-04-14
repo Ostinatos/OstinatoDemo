@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Droner Settings</title>
+</head>
+<body>
+	<h1>
+		<span th:text="${droner.dronerName}"></span>
+	</h1>
+	<form method="POST" th:object="${droner}" enctype="multipart/form-data">
+		<label>Droner Name: </label><input type="text"
+			th:value="${droner.dronerName}" readonly="true" th:field="*{dronerName}"/> <br/>
+			<label>Avatar: </label>
+			<input type="file" th:field="*{profileAvatar}" accept="image/jpeg,image/png, image/gif" value="upload avatar..." />
+			<br/>
+			<input type="hidden" th:field="*{dronerCredential}" th:value="${droner.dronerCredential}"/>
+			<input type="submit" value="Update Settings" />
+	</form>
+</body>
+</html>

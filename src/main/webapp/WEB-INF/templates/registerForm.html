@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Droner Registration</title>
+</head>
+<body>
+	<h1>Droner Registration</h1>
+	<form method="POST" th:object="${droner}">
+		user name: <input type="text" name="dronerName" /><br /> 
+		password: <input
+			type="password" name="dronerCredential" /><br /> <input type="submit"
+			value="Register" />
+	</form>
+</body>
+</html>

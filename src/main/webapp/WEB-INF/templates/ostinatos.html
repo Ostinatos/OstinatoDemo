@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Recent Ostinatos | Ostinato</title>
+</head>
+<body>
+	<h1>Recent Ostinatos...</h1>
+	<li class="ostianto_item" th:each="ostinato:${ostinatoList}">
+		<div class="ostinato_message" th:text="${ostinato.message}"></div> 
+		<span th:text="${ostinato.timestamp}"></span>
+	</li>
+</body>
+</html>
