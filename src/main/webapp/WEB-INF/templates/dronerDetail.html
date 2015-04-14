@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1 th:text="${droner.dronerName}"></h1>
-<img th:alt="${droner.dronerName}" th:src="${droner.dronerName}+'.jpg'"/><br/>
+<!-- <img  th:src="${droner.dronerName}+'.jpg'"/><br/> -->
+<img src="../resources/img/test.jpg" th:alt="${droner.dronerName}"/><br/>
 <p th:text="'droner id: ' + ${droner.dronerId }"></p>
 <a href="./settings">settings</a>
 </body>

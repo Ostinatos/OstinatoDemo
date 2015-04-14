@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ostinato.Droner;
 import ostinato.data.DronerRepository;
@@ -36,7 +37,8 @@ public class DronerController {
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String processRegistration(
 			@Valid Droner droner,
-			Errors errors
+			Errors errors,
+			RedirectAttributes model
 			){
 		logger.info("processing registration for droner: "
 				+ "dronerName:" + droner.getDronerName() + 
@@ -49,6 +51,8 @@ public class DronerController {
 		
 		concreteDronerRepository.save(droner);
 		
+		model.addFlashAttribute("droner", droner);//add the newly saved object to flash attribute
+		logger.info("droner object saved to flash attributes");
 		return "redirect:/droner/"+droner.getDronerName();
 	}
 	
@@ -56,7 +60,12 @@ public class DronerController {
 	public String dronerDetail(
 			@PathVariable String dronerName,
 			Model model){
-		model.addAttribute("droner", concreteDronerRepository.findByUsername(dronerName));
+		//if the object already exists in model, do not fire query
+		if(!model.containsAttribute("droner")){
+			logger.info("droner object not exists, fire query.");
+			model.addAttribute("droner", concreteDronerRepository.findByUsername(dronerName));
+		}
+		
 		return "dronerDetail";
 		
 	}
