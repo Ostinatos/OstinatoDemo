@@ -12,6 +12,21 @@ public class Ostinato {
 		this.timestamp=timestamp;
 	}
 	
+	public Ostinato(String message){
+		this.message=message;
+		this.timestamp=new Date();
+	}
+	
+	public Ostinato(){
+		this.message = "";
+		this.timestamp=new Date();
+	}
+	
+	@Override
+	public String toString(){
+		return this.message + " " + this.timestamp.toString();
+	}
+	
 	public Date getTimestamp() {
 		return timestamp;
 	}
